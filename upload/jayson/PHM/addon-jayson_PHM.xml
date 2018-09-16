@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="jayson_PHM" title="[JF] Prevent Hiding Members" version_string="1.0.0" version_id="1" url="https://jaysonfong.me/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners>
+    <listener event_id="load_class_controller" execute_order="10" callback_class="jayson_PHM_Listener" callback_method="Listen" active="1" hint="XenForo_ControllerPublic_Account" description=""/>
+  </code_event_listeners>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups/>
+  <permissions>
+    <permission_groups/>
+    <permissions>
+      <permission permission_group_id="general" permission_id="jayson_raa_use_followed" permission_type="flag" default_value="unset" interface_group_id="generalPermissions" display_order="1"/>
+    </permissions>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="jayson_phm_cannot_use_followed" version_id="1" version_string="1.0.0"><![CDATA[You may not restrict the ability to view your profile to that extent!]]></phrase>
+    <phrase title="permission_general_jayson_raa_use_followed" version_id="1" version_string="1.0.0"><![CDATA[Allow Restricting Profile View to Followed]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates/>
+  <public_template_modifications>
+    <modification template="account_privacy" modification_key="jayson_phm_account_privacy" description="Restricts Setting `allow_view_profile` to `followed`" execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<option value="followed" {xen:selected "{$visitor.allow_view_profile} == 'followed' "}>{xen:phrase people_you_follow_only}</option>]]></find>
+      <replace><![CDATA[<xen:if is="{$visitor.permissions.general.jayson_raa_use_followed}">$0</xen:if>]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+  <bb_codes/>
+</addon>
